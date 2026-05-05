@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Obrigado por se inscrever no Tugueda">
+    <meta name="theme-color" content="#00843D">
+    
+    <title>Inscrição Confirmada | Tugueda</title>
+    
+    <link rel="stylesheet" href="css/main.css">
+    
+    <style>
+        .confirmation {
+            min-height: calc(100vh - var(--header-height) - 300px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-12) var(--spacing-4);
+            margin-top: var(--header-height);
+        }
+        
+        .confirmation-card {
+            background-color: var(--color-white);
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-lg);
+            padding: var(--spacing-12);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .confirmation-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--color-success-light);
+            border-radius: var(--border-radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--spacing-6);
+        }
+        
+        .confirmation-icon svg {
+            width: 48px;
+            height: 48px;
+            stroke: var(--color-success);
+        }
+        
+        .confirmation h1 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-4);
+        }
+        
+        .confirmation .message {
+            color: var(--color-gray-700);
+            margin-bottom: var(--spacing-8);
+            font-size: var(--font-size-lg);
+        }
+        
+        .inscricao-details {
+            background-color: var(--color-gray-100);
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-6);
+            margin-bottom: var(--spacing-8);
+            text-align: left;
+        }
+        
+        .inscricao-details h3 {
+            font-size: var(--font-size-sm);
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--spacing-2) 0;
+            border-bottom: 1px solid var(--color-gray-300);
+        }
+        
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-gray-800);
+        }
+        
+        .detail-value {
+            color: var(--color-gray-700);
+            text-align: right;
+        }
+        
+        .next-steps {
+            text-align: left;
+            margin-bottom: var(--spacing-8);
+        }
+        
+        .next-steps h3 {
+            margin-bottom: var(--spacing-4);
+            font-size: var(--font-size-lg);
+            color: var(--color-gray-900);
+        }
+        
+        .next-steps ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .next-steps li {
+            padding: var(--spacing-2) 0;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            color: var(--color-gray-700);
+        }
+        
+        .next-steps li::before {
+            content: '✓';
+            color: var(--color-success);
+            font-weight: bold;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: var(--spacing-4);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: var(--spacing-8);
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--color-gray-300);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        .error-message {
+            background-color: var(--color-error-light);
+            color: var(--color-error);
+            padding: var(--spacing-4);
+            border-radius: var(--border-radius-md);
+            margin-bottom: var(--spacing-6);
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .confirmation-card {
+                padding: var(--spacing-6);
+            }
+            .detail-row {
+                flex-direction: column;
+                gap: var(--spacing-1);
+            }
+            .detail-value {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    
+    <main class="confirmation">
+        <div class="container">
+            <div class="confirmation-card">
+                <div class="confirmation-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                
+                <h1>Inscrição Confirmada!</h1>
+                <p class="message">Bem-vindo à comunidade Tugueda.</p>
+                
+                <div id="loadingContainer" class="loading-spinner">
+                    <div class="spinner"></div>
+                </div>
+                
+                <div id="detailsContainer" style="display: none;">
+                    <div class="inscricao-details">
+                        <h3>Dados da inscrição</h3>
+                        <div class="detail-row">
+                            <span class="detail-label">Nome / Nome Artístico</span>
+                            <span class="detail-value" id="detailNome">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Perfil</span>
+                            <span class="detail-value" id="detailPerfil">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Email</span>
+                            <span class="detail-value" id="detailEmail">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Província</span>
+                            <span class="detail-value" id="detailProvincia">-</span>
+                        </div>
+                    </div>
+                    
+                    <div class="next-steps">
+                        <h3>Próximos passos:</h3>
+                        <ul>
+                            <li>Enviaremos um email de confirmação para o seu endereço</li>
+                            <li>Receberá novidades personalizadas para o seu perfil</li>
+                            <li>A sua inscrição será analisada pela nossa equipa</li>
+                            <li>Brevemente receberá mais informações sobre a Tugueda</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div id="errorContainer" style="display: none;">
+                    <div class="error-message">
+                        Não foi possível carregar os detalhes da inscrição.
+                    </div>
+                </div>
+                
+                <div class="btn-group">
+                    <a href="index.html" class="btn btn-primary">Voltar para o início</a>
+                    <a href="info.html" class="btn btn-secondary">Saber mais sobre a Tugueda</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div id="footer-placeholder"></div>
+    
+    <script>
+        // Mapeamento de perfis para exibição
+        const perfilMap = {
+            'artista_solo': 'Artista / Músico (Solo)',
+            'banda_grupo': 'Banda / Grupo Musical',
+            'selo_gravadora': 'Selo / Editora / Gravadora',
+            'manager_agente': 'Manager / Agente Artístico',
+            'promotor_eventos': 'Promotor de Eventos',
+            'produtor': 'Produtor Musical',
+            'radio_tv': 'Rádio / TV / Streaming',
+            'jornalista_critico': 'Jornalista / Crítico Musical',
+            'estudante': 'Estudante de Música',
+            'ouvinte_fa': 'Ouvinte / Fã',
+            'loja_instrumentos': 'Loja / Instrumentos Musicais',
+            'outro': 'Outro'
+        };
+        
+        // Função para carregar componentes
+        async function loadComponent(url, elementId) {
+            try {
+                const response = await fetch(url);
+                if (response.ok) {
+                    document.getElementById(elementId).innerHTML = await response.text();
+                }
+            } catch (error) {
+                console.error(`Erro ao carregar ${url}:`, error);
+            }
+        }
+        
+        // Função para exibir dados da inscrição
+        function displayInscricao(inscricao) {
+            // Usar nome artístico/institucional, nunca nome pessoal
+            let nomeExibicao = '';
+            
+            switch(inscricao.perfil) {
+                case 'artista_solo':
+                    nomeExibicao = inscricao.dados_especificos?.nome_artistico || inscricao.nome || 'Artista';
+                    break;
+                case 'banda_grupo':
+                    nomeExibicao = inscricao.dados_especificos?.nome_banda || inscricao.nome || 'Banda';
+                    break;
+                case 'selo_gravadora':
+                    nomeExibicao = inscricao.dados_especificos?.nome_selo || inscricao.nome || 'Selo';
+                    break;
+                case 'manager_agente':
+                    nomeExibicao = inscricao.dados_especificos?.empresa || inscricao.nome || 'Manager';
+                    break;
+                case 'promotor_eventos':
+                    nomeExibicao = inscricao.dados_especificos?.empresa || inscricao.nome || 'Promotor';
+                    break;
+                case 'produtor':
+                    nomeExibicao = inscricao.dados_especificos?.estudio || inscricao.nome || 'Produtor';
+                    break;
+                case 'radio_tv':
+                    nomeExibicao = inscricao.dados_especificos?.veiculo || inscricao.nome || 'Veículo';
+                    break;
+                case 'jornalista_critico':
+                    nomeExibicao = inscricao.dados_especificos?.veiculo || inscricao.nome || 'Jornalista';
+                    break;
+                default:
+                    nomeExibicao = inscricao.nome || 'Membro';
+            }
+            
+            document.getElementById('detailNome').textContent = nomeExibicao;
+            document.getElementById('detailPerfil').textContent = perfilMap[inscricao.perfil] || inscricao.perfil;
+            document.getElementById('detailEmail').textContent = inscricao.email || '-';
+            document.getElementById('detailProvincia').textContent = inscricao.provincia || '-';
+            
+            document.getElementById('loadingContainer').style.display = 'none';
+            document.getElementById('detailsContainer').style.display = 'block';
+        }
+        
+        function showError() {
+            document.getElementById('loadingContainer').style.display = 'none';
+            document.getElementById('errorContainer').style.display = 'block';
+        }
+        
+        // Buscar inscrição do banco de dados
+        async function loadInscricaoFromDB() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            
+            if (!id) {
+                showError();
+                return;
+            }
+            
+            // Tentar buscar do IndexedDB
+            if (window.db) {
+                try {
+                    const inscricao = await window.db.getInscricao(id);
+                    if (inscricao) {
+                        displayInscricao(inscricao);
+                        return;
+                    }
+                } catch (error) {
+                    console.error('Erro ao buscar do IndexedDB:', error);
+                }
+            }
+            
+            // Fallback: buscar do localStorage
+            const inscricoes = JSON.parse(localStorage.getItem('tugueda_inscricoes') || '[]');
+            const inscricao = inscricoes.find(i => i.id === id);
+            
+            if (inscricao) {
+                displayInscricao(inscricao);
+            } else {
+                showError();
+            }
+        }
+        
+        // Carregar tudo
+        (async function() {
+            await loadComponent('components/header.html', 'header-placeholder');
+            await loadComponent('components/footer.html', 'footer-placeholder');
+            await loadInscricaoFromDB();
+        })();
+    </script>
+    
+    <script type="module">
+        import { TuguedaDB } from './js/modules/database.js';
+        
+        // Inicializar banco de dados
+        window.db = new TuguedaDB();
+        await window.db.init();
+        
+        // Se ainda não carregou, tentar novamente com o DB pronto
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        if (id && document.getElementById('loadingContainer').style.display !== 'none') {
+            const inscricao = await window.db.getInscricao(id);
+            if (inscricao) {
+                displayInscricao(inscricao);
+            }
+        }
+    </script>
+</body>
+</html>

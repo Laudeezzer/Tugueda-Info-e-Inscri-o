@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Inscreva-se no Tugueda - Plataforma oficial da música moçambicana">
+    <meta name="theme-color" content="#00843D">
+    
+    <title>Inscrição | Tugueda - Plataforma da Música Moçambicana</title>
+    
+    <!-- CSS Principal -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/pages/inscricao.css">
+</head>
+<body>
+    <!-- Header será inserido aqui via JavaScript -->
+    <div id="header-placeholder"></div>
+    
+    <main>
+        <header class="hero-inscricao">
+            <h1>Criar conta Tugueda</h1>
+            <p>Escolha o seu perfil e tenha acesso a uma experiência personalizada</p>
+        </header>
+        
+        <div class="form-container">
+            <div class="form-card">
+                <div id="successMessage" class="success-message hidden">
+                    <p>Inscrição realizada com sucesso!</p>
+                    <p>A redirecionar para a página de confirmação...</p>
+                </div>
+                
+                <form id="inscricaoForm" novalidate>
+                    <!-- PERFIL - Primeiro campo -->
+                    <div class="form-group">
+                        <label class="form-label">Tipo de Perfil <span class="required">*</span></label>
+                        <select id="perfil" name="perfil" class="form-control form-select" required>
+                            <option value="">Selecione o seu perfil principal</option>
+                            <option value="artista_solo">Artista / Músico (Solo)</option>
+                            <option value="banda_grupo">Banda / Grupo Musical</option>
+                            <option value="selo_gravadora">Selo / Editora / Gravadora</option>
+                            <option value="manager_agente">Manager / Agente Artístico</option>
+                            <option value="promotor_eventos">Promotor de Eventos</option>
+                            <option value="produtor">Produtor Musical</option>
+                            <option value="radio_tv">Rádio / TV / Streaming</option>
+                            <option value="jornalista_critico">Jornalista / Crítico Musical</option>
+                            <option value="estudante">Estudante de Música</option>
+                            <option value="ouvinte_fa">Ouvinte / Fã</option>
+                            <option value="loja_instrumentos">Loja / Instrumentos Musicais</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Informações básicas -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nome" class="form-label">Nome completo <span class="required">*</span></label>
+                            <input type="text" id="nome" name="nome" class="form-control" required placeholder="Ex: João Silva">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" class="form-control" required placeholder="exemplo@dominio.com">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="telefone" class="form-label">Telefone / WhatsApp</label>
+                            <input type="tel" id="telefone" name="telefone" class="form-control" placeholder="84 123 4567">
+                        </div>
+                        <div class="form-group">
+                            <label for="provincia" class="form-label">Cidade / Província <span class="required">*</span></label>
+                            <select id="provincia" name="provincia" class="form-control form-select" required>
+                                <option value="">Selecione</option>
+                                <option value="Maputo Cidade">Maputo Cidade</option>
+                                <option value="Maputo Província">Maputo Província</option>
+                                <option value="Gaza">Gaza</option>
+                                <option value="Inhambane">Inhambane</option>
+                                <option value="Manica">Manica</option>
+                                <option value="Sofala">Sofala</option>
+                                <option value="Tete">Tete</option>
+                                <option value="Zambézia">Zambézia</option>
+                                <option value="Nampula">Nampula</option>
+                                <option value="Cabo Delgado">Cabo Delgado</option>
+                                <option value="Niassa">Niassa</option>
+                                <option value="Fora de Moçambique">Fora de Moçambique</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- SEÇÕES CONDICIONAIS -->
+                    <!-- Artista Solo -->
+                    <div id="artista_solo_fields" class="conditional-section hidden">
+                        <div class="section-title">INFORMAÇÕES ARTÍSTICAS</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Nome Artístico</label>
+                                <input type="text" id="nome_artistico" class="form-control" placeholder="Como é conhecido artisticamente">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Ano de início de carreira</label>
+                                <input type="number" id="ano_carreira" class="form-control" min="1950" max="2026">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Géneros musicais que produz</label>
+                            <select id="generos_artista" class="form-control" multiple size="3">
+                                <option>Marrabenta</option>
+                                <option>Pandza</option>
+                                <option>Afrobeat / Afro-house</option>
+                                <option>Hip Hop / Rap</option>
+                                <option>Kizomba / Zouk</option>
+                                <option>R&B / Soul</option>
+                                <option>Rock / Alternativo</option>
+                                <option>Gospel</option>
+                                <option>Música Tradicional</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Links para suas músicas</label>
+                            <input type="text" id="links_musica" class="form-control" placeholder="Spotify, YouTube, Apple Music">
+                        </div>
+                    </div>
+                    
+                    <!-- Banda/Grupo -->
+                    <div id="banda_grupo_fields" class="conditional-section hidden">
+                        <div class="section-title">INFORMAÇÕES DO GRUPO</div>
+                        <div class="form-group">
+                            <label class="form-label">Nome da Banda / Grupo</label>
+                            <input type="text" id="nome_banda" class="form-control">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Número de membros</label>
+                                <input type="number" id="num_membros" class="form-control" min="2">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Ano de formação</label>
+                                <input type="number" id="ano_formacao" class="form-control" min="1950">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Géneros musicais</label>
+                            <select id="generos_banda" class="form-control" multiple size="3">
+                                <option>Marrabenta</option>
+                                <option>Pandza</option>
+                                <option>Afrobeat</option>
+                                <option>Hip Hop</option>
+                                <option>Rock</option>
+                                <option>Gospel</option>
+                                <option>Tradicional</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Selo/Gravadora -->
+                    <div id="selo_gravadora_fields" class="conditional-section hidden">
+                        <div class="section-title">INFORMAÇÕES DO SELO / GRAVADORA</div>
+                        <div class="form-group">
+                            <label class="form-label">Nome do Selo / Gravadora</label>
+                            <input type="text" id="nome_selo" class="form-control">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Ano de fundação</label>
+                                <input type="number" id="ano_selo" class="form-control" min="1950">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Número de artistas no catálogo</label>
+                                <input type="number" id="num_artistas_selo" class="form-control" min="1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Website / Redes sociais</label>
+                            <input type="text" id="site_selo" class="form-control" placeholder="Link do Instagram ou site">
+                        </div>
+                    </div>
+                    
+                    <!-- Manager -->
+                    <div id="manager_agente_fields" class="conditional-section hidden">
+                        <div class="section-title">INFORMAÇÕES PROFISSIONAIS</div>
+                        <div class="form-group">
+                            <label class="form-label">Nome da empresa / Agência</label>
+                            <input type="text" id="empresa_manager" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Número de artistas que gere</label>
+                            <input type="number" id="num_artistas_manager" class="form-control" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Áreas de atuação</label>
+                            <select id="areas_manager" class="form-control" multiple size="3">
+                                <option>Carreira artística</option>
+                                <option>Booking (shows)</option>
+                                <option>Assessoria de imprensa</option>
+                                <option>Marketing digital</option>
+                                <option>Distribuição musical</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Promotor -->
+                    <div id="promotor_eventos_fields" class="conditional-section hidden">
+                        <div class="section-title">INFORMAÇÕES DE EVENTOS</div>
+                        <div class="form-group">
+                            <label class="form-label">Nome da empresa / Coletivo</label>
+                            <input type="text" id="empresa_promotor" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Eventos que já realizou</label>
+                            <input type="text" id="eventos_realizados" class="form-control" placeholder="Ex: Festa da Marrabenta">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Capacidade média dos eventos</label>
+                            <select id="capacidade_eventos" class="form-control form-select">
+                                <option value="">Selecione</option>
+                                <option>Até 200 pessoas</option>
+                                <option>200 - 500 pessoas</option>
+                                <option>500 - 1000 pessoas</option>
+                                <option>1000 - 5000 pessoas</option>
+                                <option>Mais de 5000 pessoas</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Produtor -->
+                    <div id="produtor_fields" class="conditional-section hidden">
+                        <div class="section-title">INFORMAÇÕES DE PRODUÇÃO</div>
+                        <div class="form-group">
+                            <label class="form-label">Estúdio / Nome profissional</label>
+                            <input type="text" id="estudio_produtor" class="form-control">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Anos de experiência</label>
+                                <input type="number" id="anos_produtor" class="form-control" min="1">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">DAWs que utiliza</label>
+                                <input type="text" id="daws" class="form-control" placeholder="FL Studio, Logic Pro, Ableton">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Portfólio / Links</label>
+                            <input type="text" id="portfolio_produtor" class="form-control" placeholder="SoundCloud, YouTube">
+                        </div>
+                    </div>
+                    
+                    <!-- Rádio/TV -->
+                    <div id="radio_tv_fields" class="conditional-section hidden">
+                        <div class="section-title">INFORMAÇÕES DO VEÍCULO</div>
+                        <div class="form-group">
+                            <label class="form-label">Nome da Rádio / TV / Canal</label>
+                            <input type="text" id="nome_veiculo" class="form-control">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Tipo de veículo</label>
+                                <select id="tipo_veiculo" class="form-control form-select">
+                                    <option value="">Selecione</option>
+                                    <option>Rádio (FM)</option>
+                                    <option>Rádio (Online)</option>
+                                    <option>Televisão</option>
+                                    <option>Streaming (YouTube, Twitch)</option>
+                                    <option>Podcast</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Audiência estimada</label>
+                                <input type="text" id="audiencia" class="form-control" placeholder="Ex: 50.000 ouvintes">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Jornalista -->
+                    <div id="jornalista_fields" class="conditional-section hidden">
+                        <div class="section-title">INFORMAÇÕES DE IMPRENSA</div>
+                        <div class="form-group">
+                            <label class="form-label">Veículo / Plataforma</label>
+                            <input type="text" id="veiculo_jornalista" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Especialização musical</label>
+                            <input type="text" id="especialidade_jornalista" class="form-control" placeholder="crítica de álbuns, entrevistas">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Link para trabalhos publicados</label>
+                            <input type="text" id="portfolio_jornalista" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <!-- Estudante -->
+                    <div id="estudante_fields" class="conditional-section hidden">
+                        <div class="section-title">INFORMAÇÕES ACADÉMICAS</div>
+                        <div class="form-group">
+                            <label class="form-label">Curso / Área de estudo</label>
+                            <input type="text" id="curso_estudante" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Instituição de ensino</label>
+                            <input type="text" id="instituicao" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Ano lectivo</label>
+                            <select id="ano_estudante" class="form-control form-select">
+                                <option value="">Selecione</option>
+                                <option>1º Ano</option>
+                                <option>2º Ano</option>
+                                <option>3º Ano</option>
+                                <option>4º Ano ou superior</option>
+                                <option>Recém-formado</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Ouvinte/Fã -->
+                    <div id="ouvinte_fields" class="conditional-section hidden">
+                        <div class="section-title">SEUS INTERESSES MUSICAIS</div>
+                        <div class="form-group">
+                            <label class="form-label">Géneros musicais que mais gosta</label>
+                            <select id="generos_ouvinte" class="form-control" multiple size="3">
+                                <option>Marrabenta</option>
+                                <option>Pandza</option>
+                                <option>Afrobeat</option>
+                                <option>Hip Hop / Rap</option>
+                                <option>Kizomba</option>
+                                <option>R&B</option>
+                                <option>Rock</option>
+                                <option>Gospel</option>
+                                <option>Tradicional</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Artistas moçambicanos favoritos</label>
+                            <input type="text" id="artistas_favoritos" class="form-control" placeholder="Ex: Azagaia, Laylizzy">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Onde costuma ouvir música?</label>
+                            <select id="plataforma_ouvinte" class="form-control form-select">
+                                <option value="">Selecione</option>
+                                <option>Spotify</option>
+                                <option>YouTube Music</option>
+                                <option>Apple Music</option>
+                                <option>Deezer</option>
+                                <option>Rádio FM</option>
+                                <option>Download / MP3</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Loja -->
+                    <div id="loja_fields" class="conditional-section hidden">
+                        <div class="section-title">INFORMAÇÕES COMERCIAIS</div>
+                        <div class="form-group">
+                            <label class="form-label">Nome da loja / empresa</label>
+                            <input type="text" id="nome_loja" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Tipo de produtos/serviços</label>
+                            <input type="text" id="tipo_produtos" class="form-control" placeholder="instrumentos musicais, aluguer de som">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Localização (endereço)</label>
+                            <input type="text" id="localizacao_loja" class="form-control" placeholder="Cidade e bairro">
+                        </div>
+                    </div>
+                    
+                    <!-- Outro -->
+                    <div id="outro_fields" class="conditional-section hidden">
+                        <div class="section-title">DESCREVA O SEU PERFIL</div>
+                        <div class="form-group">
+                            <label class="form-label">Como se relaciona com a música?</label>
+                            <textarea id="descricao_outro" class="form-control form-textarea" rows="3" placeholder="Descreva brevemente..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Campos finais comuns -->
+                    <div class="form-group">
+                        <label class="form-label">Como conheceu o Tugueda?</label>
+                        <select id="origem" name="origem" class="form-control form-select">
+                            <option value="">Selecione</option>
+                            <option value="instagram">Instagram</option>
+                            <option value="youtube">YouTube</option>
+                            <option value="x">X (Twitter)</option>
+                            <option value="spotify">Spotify</option>
+                            <option value="amigo">Indicação de amigo</option>
+                            <option value="imprensa">Imprensa / Rádio</option>
+                            <option value="evento">Evento / Concerto</option>
+                            <option value="whatsapp">WhatsApp</option>
+                        </select>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="newsletter" name="newsletter" checked>
+                        <label for="newsletter">Desejo receber conteúdos e novidades personalizadas para o meu perfil.</label>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="termos" name="termos" required>
+                        <label for="termos">Li e concordo com a <a href="#">Política de Privacidade</a> e os <a href="#">Termos de Uso</a> do Tugueda. <span class="required">*</span></label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full btn-lg" id="submitBtn">Criar conta Tugueda</button>
+                    <div class="info-text text-center text-muted text-sm mt-4">Os campos com <span style="color: var(--color-error);">*</span> são obrigatórios</div>
+                </form>
+            </div>
+        </div>
+        
+        <section class="beneficios">
+            <div class="container">
+                <h2>Para cada perfil, uma experiência diferente</h2>
+                <div class="beneficios-grid">
+                    <div class="beneficio">
+                        <div class="beneficio-title">Artistas e Bandas</div>
+                        <p>Submissão para certificações, rankings e Tugueda Awards</p>
+                    </div>
+                    <div class="beneficio">
+                        <div class="beneficio-title">Produtores e Managers</div>
+                        <p>Rede de contactos e oportunidades de negócio</p>
+                    </div>
+                    <div class="beneficio">
+                        <div class="beneficio-title">Imprensa e Críticos</div>
+                        <p>Acesso antecipado a lançamentos e entrevistas exclusivas</p>
+                    </div>
+                    <div class="beneficio">
+                        <div class="beneficio-title">Fãs e Ouvintes</div>
+                        <p>Votação nos prémios e playlists personalizadas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer será inserido aqui via JavaScript -->
+    <div id="footer-placeholder"></div>
+    
+    <!-- JavaScript -->
+    <script>
+        // Função para carregar componentes HTML
+        async function loadComponent(url, elementId) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const html = await response.text();
+                document.getElementById(elementId).innerHTML = html;
+                return true;
+            } catch (error) {
+                console.error(`Erro ao carregar ${url}:`, error);
+                return false;
+            }
+        }
+        
+        // Carregar header e footer ao iniciar
+        (async function() {
+            await loadComponent('components/header.html', 'header-placeholder');
+            await loadComponent('components/footer.html', 'footer-placeholder');
+        })();
+    </script>
+    
+    <script type="module">
+        // Database e lógica do formulário
+        import { TuguedaDB } from './js/modules/database.js';
+        import { FormHandler } from './js/modules/form-handler.js';
+        
+        // Inicializar quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Página de inscrição inicializada');
+            
+            // Configurar máscara de telefone
+            const telefoneInput = document.getElementById('telefone');
+            if (telefoneInput) {
+                telefoneInput.addEventListener('input', (e) => {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length > 9) value = value.slice(0, 9);
+                    e.target.value = value;
+                });
+            }
+            
+            // Inicializar campos condicionais
+            const perfilSelect = document.getElementById('perfil');
+            const conditionalSections = {
+                'artista_solo': 'artista_solo_fields',
+                'banda_grupo': 'banda_grupo_fields',
+                'selo_gravadora': 'selo_gravadora_fields',
+                'manager_agente': 'manager_agente_fields',
+                'promotor_eventos': 'promotor_eventos_fields',
+                'produtor': 'produtor_fields',
+                'radio_tv': 'radio_tv_fields',
+                'jornalista_critico': 'jornalista_fields',
+                'estudante': 'estudante_fields',
+                'ouvinte_fa': 'ouvinte_fields',
+                'loja_instrumentos': 'loja_fields',
+                'outro': 'outro_fields'
+            };
+            
+            function toggleConditionalFields() {
+                const selected = perfilSelect.value;
+                
+                // Esconder todas
+                Object.values(conditionalSections).forEach(sectionId => {
+                    const section = document.getElementById(sectionId);
+                    if (section) section.classList.add('hidden');
+                });
+                
+                // Mostrar a selecionada
+                if (selected && conditionalSections[selected]) {
+                    const section = document.getElementById(conditionalSections[selected]);
+                    if (section) section.classList.remove('hidden');
+                }
+            }
+            
+            perfilSelect.addEventListener('change', toggleConditionalFields);
+            toggleConditionalFields();
+            
+            // Inicializar banco de dados
+            const db = new TuguedaDB();
+            
+            // Handler do formulário
+            const form = document.getElementById('inscricaoForm');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // Validação básica
+                const perfil = perfilSelect.value;
+                const nome = document.getElementById('nome').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const provincia = document.getElementById('provincia').value;
+                const termos = document.getElementById('termos').checked;
+                
+                if (!perfil) {
+                    alert('Selecione o tipo de perfil.');
+                    return;
+                }
+                
+                if (!nome) {
+                    alert('Preencha o seu nome.');
+                    document.getElementById('nome').focus();
+                    return;
+                }
+                
+                if (!email || !email.includes('@')) {
+                    alert('Insira um email válido.');
+                    document.getElementById('email').focus();
+                    return;
+                }
+                
+                if (!provincia) {
+                    alert('Selecione a sua província.');
+                    document.getElementById('provincia').focus();
+                    return;
+                }
+                
+                if (!termos) {
+                    alert('Aceite os Termos de Uso.');
+                    return;
+                }
+                
+                // Desabilitar botão e mostrar loading
+                submitBtn.disabled = true;
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'A processar...';
+                submitBtn.classList.add('loading');
+                
+                // Coletar dados específicos do perfil
+                const dadosEspecificos = {};
+                
+                switch(perfil) {
+                    case 'artista_solo':
+                        dadosEspecificos.nome_artistico = document.getElementById('nome_artistico')?.value || '';
+                        dadosEspecificos.ano_carreira = document.getElementById('ano_carreira')?.value || '';
+                        dadosEspecificos.generos = Array.from(document.getElementById('generos_artista')?.selectedOptions || []).map(opt => opt.value);
+                        dadosEspecificos.links = document.getElementById('links_musica')?.value || '';
+                        break;
+                    case 'banda_grupo':
+                        dadosEspecificos.nome_banda = document.getElementById('nome_banda')?.value || '';
+                        dadosEspecificos.num_membros = document.getElementById('num_membros')?.value || '';
+                        dadosEspecificos.ano_formacao = document.getElementById('ano_formacao')?.value || '';
+                        dadosEspecificos.generos = Array.from(document.getElementById('generos_banda')?.selectedOptions || []).map(opt => opt.value);
+                        break;
+                    case 'selo_gravadora':
+                        dadosEspecificos.nome_selo = document.getElementById('nome_selo')?.value || '';
+                        dadosEspecificos.ano_selo = document.getElementById('ano_selo')?.value || '';
+                        dadosEspecificos.num_artistas = document.getElementById('num_artistas_selo')?.value || '';
+                        dadosEspecificos.site = document.getElementById('site_selo')?.value || '';
+                        break;
+                    case 'manager_agente':
+                        dadosEspecificos.empresa = document.getElementById('empresa_manager')?.value || '';
+                        dadosEspecificos.num_artistas = document.getElementById('num_artistas_manager')?.value || '';
+                        dadosEspecificos.areas = Array.from(document.getElementById('areas_manager')?.selectedOptions || []).map(opt => opt.value);
+                        break;
+                    case 'promotor_eventos':
+                        dadosEspecificos.empresa = document.getElementById('empresa_promotor')?.value || '';
+                        dadosEspecificos.eventos = document.getElementById('eventos_realizados')?.value || '';
+                        dadosEspecificos.capacidade = document.getElementById('capacidade_eventos')?.value || '';
+                        break;
+                    case 'produtor':
+                        dadosEspecificos.estudio = document.getElementById('estudio_produtor')?.value || '';
+                        dadosEspecificos.anos = document.getElementById('anos_produtor')?.value || '';
+                        dadosEspecificos.daws = document.getElementById('daws')?.value || '';
+                        dadosEspecificos.portfolio = document.getElementById('portfolio_produtor')?.value || '';
+                        break;
+                    case 'radio_tv':
+                        dadosEspecificos.veiculo = document.getElementById('nome_veiculo')?.value || '';
+                        dadosEspecificos.tipo = document.getElementById('tipo_veiculo')?.value || '';
+                        dadosEspecificos.audiencia = document.getElementById('audiencia')?.value || '';
+                        break;
+                    case 'jornalista_critico':
+                        dadosEspecificos.veiculo = document.getElementById('veiculo_jornalista')?.value || '';
+                        dadosEspecificos.especialidade = document.getElementById('especialidade_jornalista')?.value || '';
+                        dadosEspecificos.portfolio = document.getElementById('portfolio_jornalista')?.value || '';
+                        break;
+                    case 'estudante':
+                        dadosEspecificos.curso = document.getElementById('curso_estudante')?.value || '';
+                        dadosEspecificos.instituicao = document.getElementById('instituicao')?.value || '';
+                        dadosEspecificos.ano = document.getElementById('ano_estudante')?.value || '';
+                        break;
+                    case 'ouvinte_fa':
+                        dadosEspecificos.generos = Array.from(document.getElementById('generos_ouvinte')?.selectedOptions || []).map(opt => opt.value);
+                        dadosEspecificos.artistas_fav = document.getElementById('artistas_favoritos')?.value || '';
+                        dadosEspecificos.plataforma = document.getElementById('plataforma_ouvinte')?.value || '';
+                        break;
+                    case 'loja_instrumentos':
+                        dadosEspecificos.nome_loja = document.getElementById('nome_loja')?.value || '';
+                        dadosEspecificos.produtos = document.getElementById('tipo_produtos')?.value || '';
+                        dadosEspecificos.localizacao = document.getElementById('localizacao_loja')?.value || '';
+                        break;
+                    case 'outro':
+                        dadosEspecificos.descricao = document.getElementById('descricao_outro')?.value || '';
+                        break;
+                }
+                
+                // Montar objeto da inscrição
+                const inscricao = {
+                    id: Date.now().toString(36) + Math.random().toString(36).substr(2, 9),
+                    perfil: perfil,
+                    nome: nome,
+                    email: email,
+                    telefone: document.getElementById('telefone')?.value || '',
+                    provincia: provincia,
+                    origem: document.getElementById('origem')?.value || '',
+                    newsletter: document.getElementById('newsletter')?.checked || false,
+                    dados_especificos: dadosEspecificos,
+                    status: 'pendente',
+                    created_at: new Date().toISOString()
+                };
+                
+                try {
+                    // Salvar no IndexedDB
+                    await db.saveInscricao(inscricao);
+                    
+                    // Também salvar no localStorage como backup
+                    const inscricoes = JSON.parse(localStorage.getItem('tugueda_inscricoes') || '[]');
+                    inscricoes.push(inscricao);
+                    localStorage.setItem('tugueda_inscricoes', JSON.stringify(inscricoes));
+                    
+                    console.log('Inscrição salva com sucesso:', inscricao);
+                    
+                    // Mostrar mensagem de sucesso
+                    const successMessage = document.getElementById('successMessage');
+                    successMessage.classList.remove('hidden');
+                    form.style.display = 'none';
+                    
+                    // Redirecionar após 2 segundos
+                    setTimeout(() => {
+                        window.location.href = `obrigado.html?id=${inscricao.id}`;
+                    }, 2000);
+                    
+                } catch (error) {
+                    console.error('Erro ao salvar inscrição:', error);
+                    alert('Ocorreu um erro ao processar sua inscrição. Tente novamente.');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                    submitBtn.classList.remove('loading');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

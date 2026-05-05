@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Informações sobre a Tugueda - Plataforma da música moçambicana">
+    <meta name="theme-color" content="#00843D">
+    
+    <title>Info | Tugueda - Plataforma da Música Moçambicana</title>
+    
+    <link rel="stylesheet" href="css/main.css">
+    
+    <style>
+        .info-hero {
+            background: linear-gradient(105deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+            color: var(--color-white);
+            text-align: center;
+            padding: var(--spacing-16) var(--spacing-4) var(--spacing-12);
+            margin-top: var(--header-height);
+        }
+        
+        .info-hero h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: var(--spacing-4);
+        }
+        
+        .info-hero p {
+            font-size: var(--font-size-lg);
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .info-content {
+            max-width: 1200px;
+            margin: var(--spacing-12) auto;
+            padding: 0 var(--spacing-4);
+        }
+        
+        .info-section {
+            margin-bottom: var(--spacing-12);
+        }
+        
+        .info-section h2 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-6);
+            font-size: var(--font-size-2xl);
+            text-align: center;
+        }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-6);
+            margin-top: var(--spacing-6);
+        }
+        
+        .info-card {
+            background-color: var(--color-white);
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-6);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-gray-200);
+            transition: transform var(--transition-base);
+        }
+        
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .info-card h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-3);
+            font-size: var(--font-size-xl);
+        }
+        
+        .info-card p {
+            color: var(--color-gray-700);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-4);
+        }
+        
+        .info-card ul {
+            margin-left: var(--spacing-5);
+            color: var(--color-gray-700);
+        }
+        
+        .info-card li {
+            margin-bottom: var(--spacing-2);
+        }
+        
+        .valores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-6);
+            margin: var(--spacing-8) 0;
+        }
+        
+        .valor-item {
+            text-align: center;
+            padding: var(--spacing-6);
+            background-color: var(--color-gray-100);
+            border-radius: var(--border-radius-lg);
+        }
+        
+        .valor-item h4 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-2);
+        }
+        
+        /* Seção de Artistas */
+        .artistas-section {
+            background-color: var(--color-gray-100);
+            border-radius: var(--border-radius-xl);
+            padding: var(--spacing-8);
+            margin-top: var(--spacing-8);
+        }
+        
+        .artistas-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: var(--spacing-6);
+        }
+        
+        .artistas-header h3 {
+            font-size: var(--font-size-xl);
+            color: var(--color-gray-900);
+        }
+        
+        .artistas-stats {
+            background-color: var(--color-primary-soft);
+            padding: var(--spacing-2) var(--spacing-4);
+            border-radius: var(--border-radius-full);
+            color: var(--color-primary);
+            font-weight: var(--font-weight-semibold);
+        }
+        
+        .artistas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--spacing-4);
+        }
+        
+        .artista-card {
+            background-color: var(--color-white);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-4);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-4);
+            border: 1px solid var(--color-gray-200);
+            transition: all var(--transition-fast);
+        }
+        
+        .artista-card:hover {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .artista-avatar {
+            width: 48px;
+            height: 48px;
+            background-color: var(--color-primary-soft);
+            border-radius: var(--border-radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
+            flex-shrink: 0;
+        }
+        
+        .artista-info {
+            flex: 1;
+        }
+        
+        .artista-nome {
+            font-weight: var(--font-weight-bold);
+            color: var(--color-gray-900);
+            margin-bottom: var(--spacing-1);
+        }
+        
+        .artista-perfil {
+            font-size: var(--font-size-xs);
+            color: var(--color-gray-600);
+        }
+        
+        .artista-data {
+            font-size: var(--font-size-xs);
+            color: var(--color-gray-500);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: var(--spacing-12);
+            background-color: var(--color-white);
+            border-radius: var(--border-radius-lg);
+            color: var(--color-gray-600);
+        }
+        
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            padding: var(--spacing-8);
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--color-gray-300);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Seção de Pergunta */
+        .pergunta-section {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            border-radius: var(--border-radius-xl);
+            padding: var(--spacing-8);
+            text-align: center;
+            color: var(--color-white);
+            margin-top: var(--spacing-8);
+        }
+        
+        .pergunta-section h3 {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--spacing-2);
+        }
+        
+        .pergunta-section p {
+            margin-bottom: var(--spacing-6);
+            opacity: 0.9;
+        }
+        
+        .pergunta-buttons {
+            display: flex;
+            gap: var(--spacing-4);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-outline-light {
+            background-color: transparent;
+            border: 2px solid var(--color-white);
+            color: var(--color-white);
+            padding: var(--spacing-2) var(--spacing-6);
+            border-radius: var(--border-radius-full);
+            font-weight: var(--font-weight-semibold);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        
+        .btn-outline-light:hover {
+            background-color: var(--color-white);
+            color: var(--color-primary);
+        }
+        
+        .btn-light {
+            background-color: var(--color-white);
+            border: none;
+            color: var(--color-primary);
+            padding: var(--spacing-2) var(--spacing-6);
+            border-radius: var(--border-radius-full);
+            font-weight: var(--font-weight-semibold);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        
+        .btn-light:hover {
+            background-color: var(--color-secondary);
+            transform: translateY(-2px);
+        }
+        
+        .feedback-message {
+            margin-top: var(--spacing-4);
+            padding: var(--spacing-2);
+            background-color: rgba(255,255,255,0.2);
+            border-radius: var(--border-radius-md);
+            display: inline-block;
+        }
+        
+        @media (max-width: 768px) {
+            .info-section h2 {
+                font-size: var(--font-size-xl);
+            }
+            .artistas-header {
+                flex-direction: column;
+                gap: var(--spacing-4);
+                text-align: center;
+            }
+            .artistas-section {
+                padding: var(--spacing-4);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    
+    <main>
+        <header class="info-hero">
+            <h1>Sobre a Tugueda</h1>
+            <p>Conheça a plataforma que está a transformar a música moçambicana</p>
+        </header>
+        
+        <div class="info-content">
+            <!-- SECÇÃO: O QUE FAZEMOS (4 cards) -->
+            <div class="info-section">
+                <h2>O Que Fazemos</h2>
+                <div class="cards-grid">
+                    <div class="info-card">
+                        <h3>📋 Registo e Certificação</h3>
+                        <p>Oferecemos um sistema de registo para artistas e agentes da música, com diferentes níveis de participação e benefícios.</p>
+                        <ul>
+                            <li>Registo gratuito para artistas</li>
+                            <li>Perfil profissional validado</li>
+                            <li>Certificado de participação</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>🤝 Comunidade e Networking</h3>
+                        <p>Criamos uma rede de contacto entre artistas, produtores, managers, promotores e imprensa especializada.</p>
+                        <ul>
+                            <li>Conexão com agentes da indústria</li>
+                            <li>Grupos por área de atuação</li>
+                            <li>Eventos de networking</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>🏆 Reconhecimento</h3>
+                        <p>Valorizamos o trabalho dos profissionais da música moçambicana através da nossa plataforma.</p>
+                        <ul>
+                            <li>Destaque na plataforma</li>
+                            <li>Playlists e curadoria</li>
+                            <li>Visibilidade para novos talentos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECÇÃO: O QUE PRECISAS SABER -->
+            <div class="info-section">
+                <h2>O Que Precisas Saber</h2>
+                <div class="cards-grid">
+                    <div class="info-card">
+                        <h3>📝 Como me inscrevo?</h3>
+                        <p>A inscrição é gratuita e aberta a todos os agentes da música moçambicana. Basta clicar em "Inscrição" no menu e preencher o formulário com os seus dados.</p>
+                        <p><strong>Dica:</strong> Escolha o perfil que melhor representa a sua atividade.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>⏱️ Quanto tempo demora?</h3>
+                        <p>O processo de inscrição leva cerca de 5 a 10 minutos. Após a submissão, receberá um email de confirmação.</p>
+                        <p><strong>Nota:</strong> A validação do perfil pode levar até 48 horas úteis.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>🔒 Os meus dados estão seguros?</h3>
+                        <p>Sim. Utilizamos tecnologias seguras para proteger as suas informações. Não partilhamos dados com terceiros sem consentimento.</p>
+                        <p><strong>Saiba mais:</strong> Consulte a nossa Política de Privacidade.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECÇÃO: VALORES -->
+            <div class="info-section">
+                <h2>Os Nossos Valores</h2>
+                <div class="valores-grid">
+                    <div class="valor-item">
+                        <h4>Transparência</h4>
+                        <p>Processos claros e abertos para todos os membros da comunidade</p>
+                    </div>
+                    <div class="valor-item">
+                        <h4>Inclusão</h4>
+                        <p>Espaço para todos os géneros musicais e todos os agentes da indústria</p>
+                    </div>
+                    <div class="valor-item">
+                        <h4>Excelência</h4>
+                        <p>Compromisso com a qualidade e profissionalismo</p>
+                    </div>
+                    <div class="valor-item">
+                        <h4>Orgulho Nacional</h4>
+                        <p>Celebrar e promover a cultura moçambicana</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECÇÃO: ARTISTAS JÁ INSCRITOS (BASE DE DADOS) -->
+            <div class="artistas-section">
+                <div class="artistas-header">
+                    <h3>🎵 Artistas e Profissionais Inscritos</h3>
+                    <div class="artistas-stats" id="artistasStats">Carregando...</div>
+                </div>
+                
+                <div id="artistasContainer">
+                    <div class="loading-spinner">
+                        <div class="spinner"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECÇÃO: PERGUNTA -->
+            <div class="pergunta-section">
+                <h3>💬 A sua opinião é importante</h3>
+                <p>Como avalia a iniciativa Tugueda até agora?</p>
+                <div class="pergunta-buttons">
+                    <button class="btn-outline-light" onclick="registarFeedback('excelente')">⭐ Excelente</button>
+                    <button class="btn-outline-light" onclick="registarFeedback('boa')">👍 Boa</button>
+                    <button class="btn-outline-light" onclick="registarFeedback('regular')">😐 Regular</button>
+                    <button class="btn-outline-light" onclick="registarFeedback('precisa_melhorar')">🔧 Precisa melhorar</button>
+                    <button class="btn-light" onclick="abrirSugestao()">💡 Dar sugestão</button>
+                </div>
+                <div id="feedbackResposta" class="feedback-message" style="display: none;"></div>
+            </div>
+        </div>
+    </main>
+    
+    <div id="footer-placeholder"></div>
+    
+    <script>
+        // Funções globais para feedback
+        window.registarFeedback = function(tipo) {
+            const mensagens = {
+                'excelente': 'Obrigado! Ficamos felizes por saber que está a gostar da Tugueda! 🎵',
+                'boa': 'Agradecemos o feedback! Vamos continuar a melhorar para si. 👍',
+                'regular': 'Obrigado pela honestidade. Diga-nos como podemos melhorar!',
+                'precisa_melhorar': 'Sentimos muito. Por favor, envie-nos a sua sugestão para melhorarmos.'
+            };
+            
+            const resposta = document.getElementById('feedbackResposta');
+            resposta.textContent = mensagens[tipo];
+            resposta.style.display = 'inline-block';
+            
+            // Salvar feedback no localStorage
+            const feedbacks = JSON.parse(localStorage.getItem('tugueda_feedbacks') || '[]');
+            feedbacks.push({
+                tipo: tipo,
+                data: new Date().toISOString()
+            });
+            localStorage.setItem('tugueda_feedbacks', JSON.stringify(feedbacks));
+            
+            // Esconder após 5 segundos
+            setTimeout(() => {
+                resposta.style.display = 'none';
+            }, 5000);
+        };
+        
+        window.abrirSugestao = function() {
+            const sugestao = prompt('Deixe aqui a sua sugestão para a Tugueda:');
+            if (sugestao && sugestao.trim()) {
+                const sugestoes = JSON.parse(localStorage.getItem('tugueda_sugestoes') || '[]');
+                sugestoes.push({
+                    texto: sugestao,
+                    data: new Date().toISOString()
+                });
+                localStorage.setItem('tugueda_sugestoes', JSON.stringify(sugestoes));
+                alert('Obrigado pela sua sugestão! Vamos analisar.');
+            }
+        };
+        
+        // Mapeamento de perfis para exibição amigável
+        const perfilDisplay = {
+            'artista_solo': 'Artista Solo',
+            'banda_grupo': 'Banda/Grupo',
+            'selo_gravadora': 'Selo/Gravadora',
+            'manager_agente': 'Manager/Agente',
+            'promotor_eventos': 'Promotor',
+            'produtor': 'Produtor',
+            'radio_tv': 'Rádio/TV',
+            'jornalista_critico': 'Jornalista',
+            'estudante': 'Estudante',
+            'ouvinte_fa': 'Ouvinte/Fã',
+            'loja_instrumentos': 'Loja/Instrumentos',
+            'outro': 'Outro'
+        };
+        
+        // Função para obter nome de exibição (artístico/institucional)
+        function getNomeExibicao(inscricao) {
+            switch(inscricao.perfil) {
+                case 'artista_solo':
+                    return inscricao.dados_especificos?.nome_artistico || inscricao.nome;
+                case 'banda_grupo':
+                    return inscricao.dados_especificos?.nome_banda || inscricao.nome;
+                case 'selo_gravadora':
+                    return inscricao.dados_especificos?.nome_selo || inscricao.nome;
+                case 'manager_agente':
+                    return inscricao.dados_especificos?.empresa || inscricao.nome;
+                case 'promotor_eventos':
+                    return inscricao.dados_especificos?.empresa || inscricao.nome;
+                case 'produtor':
+                    return inscricao.dados_especificos?.estudio || inscricao.nome;
+                case 'radio_tv':
+                    return inscricao.dados_especificos?.veiculo || inscricao.nome;
+                case 'jornalista_critico':
+                    return inscricao.dados_especificos?.veiculo || inscricao.nome;
+                default:
+                    return inscricao.nome;
+            }
+        }
+        
+        // Carregar componentes
+        async function loadComponent(url, elementId) {
+            try {
+                const response = await fetch(url);
+                if (response.ok) {
+                    document.getElementById(elementId).innerHTML = await response.text();
+                }
+            } catch (error) {
+                console.error(`Erro ao carregar ${url}:`, error);
+            }
+        }
+        
+        // Carregar artistas da base de dados
+        async function carregarArtistas() {
+            const container = document.getElementById('artistasContainer');
+            const statsElement = document.getElementById('artistasStats');
+            
+            try {
+                let inscricoes = [];
+                
+                // Tentar buscar do IndexedDB
+                if (window.db) {
+                    inscricoes = await window.db.getAllInscricoes(100);
+                    console.log('Artistas carregados do IndexedDB:', inscricoes.length);
+                }
+                
+                // Fallback: localStorage
+                if (inscricoes.length === 0) {
+                    inscricoes = JSON.parse(localStorage.getItem('tugueda_inscricoes') || '[]');
+                    console.log('Artistas carregados do localStorage:', inscricoes.length);
+                }
+                
+                // Filtrar apenas perfis artísticos (artistas, bandas, selos)
+                const artistas = inscricoes.filter(i => 
+                    i.perfil === 'artista_solo' || 
+                    i.perfil === 'banda_grupo' || 
+                    i.perfil === 'selo_gravadora'
+                );
+                
+                const outros = inscricoes.filter(i => 
+                    i.perfil !== 'artista_solo' && 
+                    i.perfil !== 'banda_grupo' && 
+                    i.perfil !== 'selo_gravadora'
+                );
+                
+                // Atualizar estatísticas
+                statsElement.innerHTML = `🎤 ${artistas.length} artistas | 👥 ${outros.length} profissionais | 📊 Total: ${inscricoes.length}`;
+                
+                if (artistas.length === 0 && outros.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <p>📭 Ainda não há inscrições registadas.</p>
+                            <p style="margin-top: var(--spacing-2);">Seja o primeiro a inscrever-se na Tugueda!</p>
+                            <a href="inscricao.html" class="btn btn-primary" style="display: inline-block; margin-top: var(--spacing-4);">Fazer inscrição</a>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Construir HTML dos artistas
+                let html = '<div class="artistas-grid">';
+                
+                // Mostrar artistas primeiro
+                artistas.forEach(artista => {
+                    const nome = getNomeExibicao(artista);
+                    const inicial = nome.charAt(0).toUpperCase();
+                    const data = new Date(artista.created_at).toLocaleDateString('pt-MZ');
+                    
+                    html += `
+                        <div class="artista-card">
+                            <div class="artista-avatar">${inicial}</div>
+                            <div class="artista-info">
+                                <div class="artista-nome">${nome}</div>
+                                <div class="artista-perfil">${perfilDisplay[artista.perfil] || artista.perfil}</div>
+                                <div class="artista-data">${data}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                // Mostrar outros profissionais
+                outros.forEach(profissional => {
+                    const nome = getNomeExibicao(profissional);
+                    const inicial = nome.charAt(0).toUpperCase();
+                    const data = new Date(profissional.created_at).toLocaleDateString('pt-MZ');
+                    
+                    html += `
+                        <div class="artista-card">
+                            <div class="artista-avatar">${inicial}</div>
+                            <div class="artista-info">
+                                <div class="artista-nome">${nome}</div>
+                                <div class="artista-perfil">${perfilDisplay[profissional.perfil] || profissional.perfil}</div>
+                                <div class="artista-data">${data}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                html += '</div>';
+                container.innerHTML = html;
+                
+            } catch (error) {
+                console.error('Erro ao carregar artistas:', error);
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <p>⚠️ Erro ao carregar a base de dados.</p>
+                        <p style="margin-top: var(--spacing-2);">Tente novamente mais tarde.</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Inicializar página
+        (async function() {
+            await loadComponent('components/header.html', 'header-placeholder');
+            await loadComponent('components/footer.html', 'footer-placeholder');
+            await carregarArtistas();
+        })();
+    </script>
+    
+    <script type="module">
+        import { TuguedaDB } from './js/modules/database.js';
+        
+        // Inicializar banco de dados
+        window.db = new TuguedaDB();
+        await window.db.init();
+        
+        // Recarregar artistas quando o DB estiver pronto
+        await carregarArtistas();
+    </script>
+</body>
+</html>

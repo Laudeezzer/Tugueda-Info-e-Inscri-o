@@ -1,0 +1,56 @@
+/* reset.css - Modern CSS Reset */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Remove estilos padrão de listas */
+ul, ol {
+    list-style: none;
+}
+
+/* Remove decoração de links */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Remove bordas padrão de imagens */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Herda font para inputs e buttons */
+input, button, textarea, select {
+    font: inherit;
+}
+
+/* Remove aparência padrão de botões */
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Melhora a renderização de textos */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove animações para quem prefere sem movimento */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

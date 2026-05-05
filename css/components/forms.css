@@ -1,0 +1,149 @@
+/* forms.css */
+
+.form-group {
+    margin-bottom: var(--spacing-6);
+}
+
+.form-label {
+    display: block;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-2);
+    color: var(--color-gray-800);
+}
+
+.form-label .required {
+    color: var(--color-error);
+    margin-left: var(--spacing-1);
+}
+
+.form-control {
+    width: 100%;
+    padding: var(--spacing-3) var(--spacing-4);
+    font-size: var(--font-size-base);
+    border: 1px solid var(--color-gray-400);
+    border-radius: var(--border-radius-md);
+    background-color: var(--color-white);
+    transition: all var(--transition-fast);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(0, 132, 61, 0.1);
+}
+
+.form-control.is-invalid {
+    border-color: var(--color-error);
+    background-color: var(--color-error-light);
+}
+
+.form-control.is-invalid:focus {
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.form-control:disabled {
+    background-color: var(--color-gray-100);
+    cursor: not-allowed;
+}
+
+/* Select */
+.form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235A6B7A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--spacing-4) center;
+    background-size: 16px;
+    padding-right: var(--spacing-10);
+}
+
+/* Textarea */
+.form-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Select múltiplo */
+select[multiple] {
+    background-image: none;
+    padding: var(--spacing-2);
+    min-height: 100px;
+}
+
+select[multiple] option {
+    padding: var(--spacing-2);
+    border-radius: var(--border-radius-sm);
+}
+
+select[multiple] option:checked {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+/* Help text */
+.form-help {
+    display: block;
+    font-size: var(--font-size-xs);
+    color: var(--color-gray-600);
+    margin-top: var(--spacing-1);
+}
+
+/* Error message */
+.field-error {
+    display: block;
+    font-size: var(--font-size-xs);
+    color: var(--color-error);
+    margin-top: var(--spacing-1);
+}
+
+/* Form row (2 colunas) */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-4);
+}
+
+/* Checkbox group */
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-3);
+    margin-bottom: var(--spacing-4);
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    cursor: pointer;
+}
+
+.checkbox-group label {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-700);
+    cursor: pointer;
+}
+
+/* Conditional section */
+.conditional-section {
+    border-top: 1px solid var(--color-gray-300);
+    margin-top: var(--spacing-4);
+    padding-top: var(--spacing-6);
+}
+
+.section-title {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-4);
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-4);
+    }
+}

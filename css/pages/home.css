@@ -1,0 +1,106 @@
+/* home.css - Estilos específicos da página inicial */
+
+/* Seção Pilares */
+.pilares {
+    padding: var(--spacing-16) 0;
+    background-color: var(--color-white);
+}
+
+/* Seção Sobre */
+.sobre {
+    padding: var(--spacing-16) 0;
+    background-color: var(--color-gray-100);
+    text-align: center;
+}
+
+.sobre h2 {
+    margin-bottom: var(--spacing-6);
+}
+
+.sobre p {
+    max-width: 720px;
+    margin: 0 auto var(--spacing-4);
+    color: var(--color-gray-700);
+    font-size: var(--font-size-lg);
+    line-height: 1.6;
+}
+
+/* Seção CTA */
+.cta {
+    padding: var(--spacing-16) 0;
+    background-color: var(--color-primary-soft);
+    text-align: center;
+}
+
+.cta h2 {
+    margin-bottom: var(--spacing-4);
+}
+
+.cta p {
+    max-width: 560px;
+    margin: 0 auto var(--spacing-8);
+    color: var(--color-gray-700);
+}
+
+.redes-sociais {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-4);
+    margin-top: var(--spacing-12);
+    flex-wrap: wrap;
+}
+
+.social-link {
+    display: inline-block;
+    padding: var(--spacing-2) var(--spacing-5);
+    background-color: transparent;
+    color: var(--color-gray-800);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-sm);
+    transition: all var(--transition-fast);
+    border-radius: var(--border-radius-full);
+    border: 1px solid var(--color-gray-400);
+}
+
+.social-link:hover {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+/* Estilos para o logotipo */
+.hero-logo {
+    width: auto;
+    height: auto;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    margin-bottom: var(--spacing-6);
+    padding: 0;
+}
+
+.logo-img {
+    max-width: 180px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    transition: transform var(--transition-base);
+}
+
+.logo-img:hover {
+    transform: scale(1.02);
+}
+
+/* Responsivo para mobile */
+@media (max-width: 768px) {
+    .logo-img {
+        max-width: 140px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-img {
+        max-width: 120px;
+    }
+}
